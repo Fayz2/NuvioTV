@@ -205,13 +205,6 @@ private fun rememberSettingsSectionSpecs() = listOf(
         destination = SettingsSectionDestination.External
     ),
     SettingsSectionSpec(
-        category = SettingsCategory.ABOUT,
-        title = stringResource(R.string.about_title),
-        icon = Icons.Default.Info,
-        subtitle = stringResource(R.string.settings_about_subtitle),
-        destination = SettingsSectionDestination.Inline
-    ),
-    SettingsSectionSpec(
         category = SettingsCategory.ADVANCED,
         title = stringResource(R.string.settings_advanced),
         icon = Icons.Default.Build,

@@ -8,8 +8,6 @@ internal object UpdateBannerPolicy {
         dismissedTag: String?,
         updateTag: String
     ): Boolean {
-        if (!isRemoteNewer) return false
-        if (force) return true
-        return bannerEnabled && dismissedTag != updateTag
+        return false
     }
 }
