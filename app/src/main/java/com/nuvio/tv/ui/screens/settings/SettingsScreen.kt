@@ -198,13 +198,6 @@ private fun rememberSettingsSectionSpecs() = listOf(
         destination = SettingsSectionDestination.Inline
     ),
     SettingsSectionSpec(
-        category = SettingsCategory.TRACKING,
-        title = stringResource(R.string.settings_tracking_title),
-        icon = Icons.Default.Sync,
-        subtitle = stringResource(R.string.settings_tracking_subtitle),
-        destination = SettingsSectionDestination.External
-    ),
-    SettingsSectionSpec(
         category = SettingsCategory.ADVANCED,
         title = stringResource(R.string.settings_advanced),
         icon = Icons.Default.Build,
