@@ -255,7 +255,7 @@ fun SettingsScreen(
                 SettingsCategory.PROFILES -> isPrimaryProfileActive
                 SettingsCategory.ACCOUNT -> isPrimaryProfileActive
                 SettingsCategory.LAYOUT -> true
-                SettingsCategory.CONTENT_DISCOVERY -> true
+                SettingsCategory.CONTENT_DISCOVERY -> false
                 SettingsCategory.INTEGRATION -> true
                 SettingsCategory.ADVANCED -> true
                 else -> true
