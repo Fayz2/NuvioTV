@@ -1354,7 +1354,7 @@ private fun MetaDetailsContent(
     val showStandardOverallRatings = overallRatingsVisibility
         .showStandardDetailRatings(isMdbListRatingsActive)
     val visibleMdbListRatings = mdbListRatings.takeIf { isMdbListRatingsActive }
-    val hasRatingsSection = isTvShow && showEpisodeImdbRatings
+    val hasRatingsSection = false
     val strTabCast = stringResource(R.string.detail_tab_cast)
     val strTabRatings = stringResource(R.string.detail_tab_ratings)
     val strTabMoreLikeThis = stringResource(R.string.detail_tab_more_like_this)
