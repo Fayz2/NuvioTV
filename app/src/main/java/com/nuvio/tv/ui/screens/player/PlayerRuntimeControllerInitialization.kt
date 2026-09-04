@@ -883,7 +883,7 @@ internal fun PlayerRuntimeController.initializePlayer(
                         ),
                         stripDvRpu = stripDvRpuEnabled,
                         stripHdr10PlusSei = stripHdr10PlusSei
-                    )
+                    ).withNuvioMp4Extractor()
 
             setLoadingStatus(
                 phase = "building_player",
@@ -957,7 +957,7 @@ internal fun PlayerRuntimeController.initializePlayer(
                 try {
                     currentMediaSession?.release()
                     if (canAdvertiseSession()) {
-                        currentMediaSession = MediaSession.Builder(context, this).build()
+                        currentMediaSession = MediaSession.Builder(context, SafeMediaSessionPlayer(this)).build()
                     }
                     updateMediaSessionMetadata()
                 } catch (e: Exception) {
