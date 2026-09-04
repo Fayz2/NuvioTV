@@ -722,7 +722,8 @@ open class MainActivity : ComponentActivity() {
                                     year = next.year,
                                     contentId = next.contentId,
                                     contentName = next.contentName,
-                                    returnToDetailOnBack = next.contentType.equals("series", ignoreCase = true)
+                                    returnToDetailOnBack = next.contentType.equals("series", ignoreCase = true),
+                                    profileId = next.profileId
                                 )
                             ) {
                                 // Replace any lingering Stream screen (e.g. the previous
@@ -1584,7 +1585,7 @@ private fun ModernSidebarScaffold(
     var focusedDrawerIndex by remember { mutableStateOf(-1) }
     var isFloatingPillIconOnly by remember { mutableStateOf(false) }
     var pillExpandRequestCount by remember { mutableIntStateOf(0) }
-    val keepFloatingPillExpanded = selectedDrawerRoute == Screen.Settings.route
+    val keepFloatingPillExpanded = false
     val keepSidebarFocusDuringCollapse =
         isSidebarExpanded || sidebarCollapsePending || pendingContentFocusTransfer
     val hasSidebarProfileItem = showProfileSelector && activeProfileName.isNotEmpty()
@@ -1610,6 +1611,14 @@ private fun ModernSidebarScaffold(
     LaunchedEffect(keepFloatingPillExpanded, showSidebar) {
         if (!showSidebar || keepFloatingPillExpanded) {
             isFloatingPillIconOnly = false
+        }
+    }
+
+    // Expand pill label briefly after navigating to a different root route
+    LaunchedEffect(selectedDrawerRoute) {
+        if (showSidebar && !isSidebarExpanded) {
+            isFloatingPillIconOnly = false
+            pillExpandRequestCount++
         }
     }
 
