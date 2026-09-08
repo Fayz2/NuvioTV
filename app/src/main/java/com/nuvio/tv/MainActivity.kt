@@ -145,6 +145,7 @@ import com.nuvio.tv.data.repository.MemberAccessRepository
 import com.nuvio.tv.data.remote.supabase.AvatarRepository
 import com.nuvio.tv.domain.model.AppFont
 import com.nuvio.tv.domain.model.AppTheme
+import com.nuvio.tv.domain.model.CustomThemeColors
 import com.nuvio.tv.domain.model.AuthState
 import com.nuvio.tv.domain.model.CardDepthStyle
 import com.nuvio.tv.domain.model.CosmeticEntitlement
@@ -153,6 +154,7 @@ import com.nuvio.tv.domain.model.ExperienceMode
 import com.nuvio.tv.domain.model.MemberAccess
 import com.nuvio.tv.domain.model.SettingsUiStyle
 import com.nuvio.tv.domain.model.resolveAppTheme
+import com.nuvio.tv.domain.model.resolveCustomThemeColors
 import com.nuvio.tv.domain.deeplink.AppDeepLink
 import com.nuvio.tv.domain.repository.AddonRepository
 import com.nuvio.tv.ui.components.NuvioScrollDefaults
@@ -208,6 +210,7 @@ data class DrawerItem(
 
 private data class MainUiPrefs(
     val theme: AppTheme = AppTheme.WHITE,
+    val customThemeColors: CustomThemeColors = CustomThemeColors.Default,
     val memberAccess: MemberAccess = MemberAccess.None,
     val font: AppFont = AppFont.INTER,
     val amoledMode: Boolean = false,
@@ -436,10 +439,13 @@ open class MainActivity : ComponentActivity() {
                 memberAccessRepository
             ) {
                 val activeThemeFlow = combine(
-                    themeDataStore.selectedThemePreference,
+                    themeDataStore.themeSelection,
                     memberAccessRepository.access
-                ) { selectedTheme, memberAccess ->
-                    resolveAppTheme(selectedTheme, memberAccess.entitlements) to memberAccess
+                ) { selection, memberAccess ->
+                    selection.copy(
+                        theme = resolveAppTheme(selection.theme, memberAccess.entitlements),
+                        customColors = resolveCustomThemeColors(selection.customColors, memberAccess.tier)
+                    ) to memberAccess
                 }
                 // Group flows into two batches to reduce intermediate flow allocations.
                 // Each batch uses a single combine() instead of chaining .combine() calls,
@@ -452,7 +458,8 @@ open class MainActivity : ComponentActivity() {
                     experienceModeDataStore.mode,
                 ) { themeAndAccess, font, amoledMode, amoledSurfacesMode, experienceMode ->
                     MainUiPrefs(
-                        theme = themeAndAccess.first,
+                        theme = themeAndAccess.first.theme ?: AppTheme.WHITE,
+                        customThemeColors = themeAndAccess.first.customColors,
                         memberAccess = themeAndAccess.second,
                         font = font,
                         amoledMode = amoledMode,
@@ -520,6 +527,7 @@ open class MainActivity : ComponentActivity() {
 
             NuvioTheme(
                 appTheme = mainUiPrefs.theme,
+                customThemeColors = mainUiPrefs.customThemeColors,
                 appFont = mainUiPrefs.font,
                 amoledMode = mainUiPrefs.amoledMode,
                 amoledSurfacesMode = mainUiPrefs.amoledSurfacesMode,
@@ -538,11 +546,13 @@ open class MainActivity : ComponentActivity() {
                         fontScale = systemDensity.fontScale.coerceAtMost(MAX_SUPPORTED_FONT_SCALE)
                     )
                 }
+                val highlighterEnabled = BuildConfig.IS_DEBUG_BUILD && mainUiPrefs.composeHighlighterEnabled
+                com.nuvio.tv.ui.util.RecompositionHighlighterFlag.enabled = highlighterEnabled
                 CompositionLocalProvider(
                     LocalDensity provides clampedFontScaleDensity,
                     LocalBringIntoViewSpec provides bringIntoViewSpec,
                     LocalFastHorizontalNavigationEnabled provides mainUiPrefs.fastHorizontalNavigationEnabled,
-                    LocalRecompositionHighlighterEnabled provides (BuildConfig.IS_DEBUG_BUILD && mainUiPrefs.composeHighlighterEnabled),
+                    LocalRecompositionHighlighterEnabled provides highlighterEnabled,
                     LocalCardDepthStyle provides mainUiPrefs.cardDepthStyle,
                     LocalMemberAccess provides mainUiPrefs.memberAccess,
                     com.nuvio.tv.core.player.LocalTrailerPlayerPool provides trailerPlayerPool
@@ -1487,7 +1497,7 @@ private fun LegacySidebarButton(
         label = "legacySidebarItemIconTint"
     )
     val selectedCollapsedIconBrush = if (selected && !expanded) {
-        ThemeColors.getColorPalette(NuvioTheme.currentTheme).accentBrush()
+        NuvioTheme.palette.accentBrush()
     } else {
         null
     }
