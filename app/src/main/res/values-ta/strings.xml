@@ -816,7 +816,7 @@
     <string name="layout_trailer_muted">ஒலியின்றி டிரெய்லரை இயக்கு</string>
     <string name="layout_trailer_muted_sub_preview">தானியங்கி முன்னோட்டத்தின் போது டிரெய்லர் ஒலியை அமைதிப்படுத்து.</string>
     <string name="layout_trailer_muted_sub_expanded">விரிவாக்கப்பட்ட அட்டைகளில் டிரெய்லர் ஒலியை அமைதிப்படுத்து.</string>
-    <string name="layout_section_card_style">போஸ்டர் அட்டை நடை</string>
+    <string name="layout_section_card_style">போஸ்டர் அட்டை</string>
     <string name="layout_section_card_style_desc">அட்டையின் அகலம் மற்றும் மூலை வளைவை அமை.</string>
     <string name="layout_open">திறந்த</string>
     <string name="layout_closed">மூடிய</string>
@@ -900,8 +900,6 @@
     <string name="tmdb_basic_info_subtitle">விளக்கம், வகைகள் மற்றும் மதிப்பீடு டிஎம்டிபியிலிருந்து</string>
     <string name="tmdb_details_title">விவரங்கள்</string>
     <string name="tmdb_details_subtitle">இயக்க நேரம், நிலை, நாடு மற்றும் மொழி டிஎம்டிபியிலிருந்து</string>
-    <string name="tmdb_release_dates_title">வெளியீட்டு தேதிகள்</string>
-    <string name="tmdb_release_dates_subtitle">வெளியீட்டு மற்றும் ஒளிபரப்பு தேதிகள் டிஎம்டிபியிலிருந்து</string>
     <string name="tmdb_credits_title">பங்களிப்புகள்</string>
     <string name="tmdb_credits_subtitle">புகைப்படங்களுடன் நடிகர்கள், இயக்குநர் மற்றும் எழுத்தாளர் டிஎம்டிபியிலிருந்து</string>
     <string name="tmdb_productions_title">தயாரிப்புகள்</string>
@@ -2242,10 +2240,6 @@
     <string name="network_fast_error_token_missing">பாஸ்ட்.காம்: தொகுப்பில் டோக்கன் கிடைக்கவில்லை</string>
 
     <!-- Torrent service / TorrServer binary errors -->
-    <string name="torrent_error_add_failed">டோரண்டைச் சேர்க்க முடியவில்லை</string>
-    <string name="torrent_error_binary_missing">டோர் சர்வர் பைனரி %1$s இல் கிடைக்கவில்லை</string>
-    <string name="torrent_error_process_died">டோர் சர்வர் செயல்முறை தொடக்கத்தில் முடங்கியது (வெளியேறும் குறியீடு %1$d)</string>
-    <string name="torrent_error_start_timeout">டோர் சர்வர் %1$ds குள் தொடங்க முடியவில்லை</string>
 
     <!-- Player runtime: stream / external link errors -->
     <string name="player_torrent_starting_engine">பி2பி இயந்திரம் தொடங்குகிறது…</string>

@@ -954,7 +954,7 @@
     <string name="layout_trailer_muted">Luaj trailerin pa zë</string>
     <string name="layout_trailer_muted_sub_preview">Çaktivizo zërin e trailerit gjatë pamjes paraprake automatike.</string>
     <string name="layout_trailer_muted_sub_expanded">Çaktivizo zërin e trailerit në kartat e zgjeruara.</string>
-    <string name="layout_section_card_style">Stili i kartës së posterit</string>
+    <string name="layout_section_card_style">Karta e posterit</string>
     <string name="layout_section_card_style_desc">Rregullo gjerësinë e kartës dhe rrezen e qosheve.</string>
     <string name="settings_card_depth_title">Efekti i thellësisë së kartës</string>
     <string name="settings_card_depth_description">Shton një skaj të sipërm të ndriçuar dhe një shkëlqim të butë në kartat me imazh për një ndjesi të lehtë thellësie.</string>
@@ -1220,8 +1220,6 @@
     <string name="tmdb_basic_info_subtitle">Përshkrimi, zhanret dhe vlerësimi nga TMDB</string>
     <string name="tmdb_details_title">Detajet</string>
     <string name="tmdb_details_subtitle">Kohëzgjatja, statusi, shteti dhe gjuha nga TMDB</string>
-    <string name="tmdb_release_dates_title">Datat e publikimit</string>
-    <string name="tmdb_release_dates_subtitle">Datat e publikimit dhe transmetimit nga TMDB</string>
     <string name="tmdb_credits_title">Kreditet</string>
     <string name="tmdb_credits_subtitle">Aktorët me fotografi, regjisori dhe skenaristi nga TMDB</string>
     <string name="tmdb_productions_title">Produksionet</string>
@@ -2663,10 +2661,6 @@
     <string name="network_fast_error_script_path_missing">fast.com: shtegu i skriptit nuk u gjet</string>
     <string name="network_fast_error_token_missing">fast.com: tokeni nuk u gjet në paketë</string>
     <!-- Torrent service / TorrServer binary errors -->
-    <string name="torrent_error_add_failed">Shtimi i torrentit dështoi</string>
-    <string name="torrent_error_binary_missing">Binari TorrServer nuk u gjet në %1$s</string>
-    <string name="torrent_error_process_died">Procesi TorrServer u ndërpre gjatë nisjes (kodi i daljes %1$d)</string>
-    <string name="torrent_error_start_timeout">TorrServer nuk arriti të nisej brenda %1$ds</string>
     <!-- Player runtime: stream / external link errors -->
     <string name="player_torrent_starting_engine">Duke nisur motorin P2P…</string>
     <string name="player_torrent_rebuffer_status">%1$s në buffer</string>

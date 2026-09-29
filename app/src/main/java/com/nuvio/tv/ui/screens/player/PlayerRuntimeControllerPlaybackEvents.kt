@@ -745,7 +745,13 @@ internal fun PlayerRuntimeController.saveWatchProgressInternal(position: Long, d
                 )
             }
             runCatching { tvRecommendationManager.onProgressRemoved(normalizedProgress.contentId) }
-        } else {
+        } else if (!hasMarkedCurrentEpisodeCompleted) {
+            // Only save in-progress when the episode has not already been
+            // marked as completed during this playback session.  After
+            // natural playback completion the player can report stale
+            // position/duration values (e.g. duration=0 → fallbackPercent=5)
+            // which would overwrite the completed entry in the mutation
+            // store and push an incorrect low-progress value to remote.
             watchProgressRepository.saveProgress(
                 normalizedProgress,
                 profileId = profileId,
@@ -1720,11 +1726,27 @@ fun PlayerRuntimeController.onEvent(event: PlayerEvent) {
         PlayerEvent.OnToggleAspectRatio -> {
             val state = _uiState.value
             if (state.tunnelingEnabled) {
+                val fill = !state.tunneledSurfaceFill
+                val label = PlayerDisplayModeUtils.resizeModeLabel(
+                    PlayerDisplayModeUtils.exoSurfaceResizeMode(
+                        tunnelingEnabled = true,
+                        tunneledSurfaceFill = fill
+                    ),
+                    context
+                )
+                Log.d(
+                    PlayerRuntimeController.TAG,
+                    "Tunneled surface resize toggled: fill=$fill ($label)"
+                )
                 _uiState.update {
                     it.copy(
+                        tunneledSurfaceFill = fill,
                         showAspectRatioIndicator = true,
-                        aspectRatioIndicatorText = context.getString(R.string.player_aspect_tunneling_unavailable)
+                        aspectRatioIndicatorText = label
                     )
+                }
+                scope.launch {
+                    deviceLocalPlayerPreferences.setTunneledSurfaceFill(fill)
                 }
                 hideAspectRatioIndicatorJob?.cancel()
                 hideAspectRatioIndicatorJob = scope.launch {

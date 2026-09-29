@@ -868,7 +868,7 @@
     <string name="layout_trailer_muted">Afspil trailer uden lyd</string>
     <string name="layout_trailer_muted_sub_preview">Slå trailer-lyd fra under automatisk afspilningsforhåndsvisning.</string>
     <string name="layout_trailer_muted_sub_expanded">Slå trailer-lyd fra i udvidede kort.</string>
-    <string name="layout_section_card_style">Posterkort-stil</string>
+    <string name="layout_section_card_style">Posterkort</string>
     <string name="layout_section_card_style_desc">Justér kortbredde og hjørneradius.</string>
     <string name="layout_open">Åben</string>
     <string name="layout_closed">Lukket</string>
@@ -1112,8 +1112,6 @@
     <string name="tmdb_basic_info_subtitle">Beskrivelse, genrer og bedømmelse fra TMDB</string>
     <string name="tmdb_details_title">Detaljer</string>
     <string name="tmdb_details_subtitle">Varighed, status, land og sprog fra TMDB</string>
-    <string name="tmdb_release_dates_title">Udgivelsesdatoer</string>
-    <string name="tmdb_release_dates_subtitle">Udgivelses- og sendedatoer fra TMDB</string>
     <string name="tmdb_credits_title">Credits</string>
     <string name="tmdb_credits_subtitle">Medvirkende med fotos, instruktør og manuskriptforfatter fra TMDB</string>
     <string name="tmdb_productions_title">Produktioner</string>
@@ -2475,10 +2473,6 @@
     <string name="network_fast_error_token_missing">fast.com: token ikke fundet i bundle</string>
 
     <!-- Torrent service / TorrServer binary errors -->
-    <string name="torrent_error_add_failed">Tilføjelse af torrent mislykkedes</string>
-    <string name="torrent_error_binary_missing">TorrServer-binær ikke fundet på %1$s</string>
-    <string name="torrent_error_process_died">TorrServer-processen stoppede ved opstart (exit-kode %1$d)</string>
-    <string name="torrent_error_start_timeout">TorrServer kunne ikke starte inden for %1$ds</string>
 
     <!-- Player runtime: stream / external link errors -->
     <string name="player_torrent_starting_engine">Starter P2P-motor…</string>

@@ -873,7 +873,7 @@
     <string name="layout_trailer_muted">予告編をミュートで再生</string>
     <string name="layout_trailer_muted_sub_preview">自動再生プレビュー中の予告編音声をミュート</string>
     <string name="layout_trailer_muted_sub_expanded">拡大カードの予告編音声をミュート</string>
-    <string name="layout_section_card_style">ポスターカードスタイル</string>
+    <string name="layout_section_card_style">ポスターカード</string>
     <string name="layout_section_card_style_desc">カードの幅と角の丸みを調整</string>
     <string name="layout_open">開く</string>
     <string name="layout_closed">閉じる</string>
@@ -1116,8 +1116,6 @@
     <string name="tmdb_basic_info_subtitle">TMDBの説明、ジャンル、評価</string>
     <string name="tmdb_details_title">詳細</string>
     <string name="tmdb_details_subtitle">TMDBの上映時間、公開日、国、言語</string>
-    <string name="tmdb_release_dates_title">公開日</string>
-    <string name="tmdb_release_dates_subtitle">TMDBの公開日と放送日</string>
     <string name="tmdb_credits_title">クレジット</string>
     <string name="tmdb_credits_subtitle">TMDBの写真付きキャスト、監督、脚本家</string>
     <string name="tmdb_productions_title">制作会社</string>
@@ -2476,10 +2474,6 @@
     <string name="network_fast_error_token_missing">fast.com: トークンがバンドルに見つかりません</string>
 
     <!-- Torrent service / TorrServer binary errors -->
-    <string name="torrent_error_add_failed">トレントの追加に失敗しました</string>
-    <string name="torrent_error_binary_missing">TorrServerバイナリが %1$s に見つかりません</string>
-    <string name="torrent_error_process_died">TorrServerプロセスが起動時に終了しました（終了コード %1$d）</string>
-    <string name="torrent_error_start_timeout">TorrServerが%1$ds以内に起動しませんでした</string>
 
     <!-- Player runtime: stream / external link errors -->
     <string name="player_torrent_starting_engine">P2Pエンジンを起動中…</string>
