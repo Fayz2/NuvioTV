@@ -123,6 +123,13 @@ internal data class SettingsSectionSpec(
     val destination: SettingsSectionDestination
 )
 
+// Fork customization: categories hidden from the settings rail.
+private val FORK_HIDDEN_SETTINGS_CATEGORIES = setOf(
+    SettingsCategory.TRACKING,
+    SettingsCategory.ABOUT,
+    SettingsCategory.CONTENT_DISCOVERY
+)
+
 private const val SETTINGS_DETAIL_FOCUS_DELAY_MS = 120L
 // The rail gets the same treatment as the options pane: bring the item into view, then keep
 // asking for a short while as it settles.
@@ -205,7 +212,7 @@ fun SettingsScreen(
             isPrimaryProfile = isPrimaryProfileActive,
             isEssentialMode = isEssentialMode,
             isDebugBuild = BuildConfig.IS_DEBUG_BUILD
-        )
+        ).filterNot { it in FORK_HIDDEN_SETTINGS_CATEGORIES }
     }
     val visibleSections = visibleCategories.map { category -> settingsSectionSpec(category) }
 
