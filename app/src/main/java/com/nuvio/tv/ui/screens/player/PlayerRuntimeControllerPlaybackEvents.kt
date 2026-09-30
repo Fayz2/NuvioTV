@@ -1097,8 +1097,7 @@ internal fun PlayerRuntimeController.setSubtitleDelayMs(targetMs: Int, showOverl
         _uiState.update {
             it.copy(
                 subtitleDelayMs = newDelayMs,
-                showSubtitleDelayOverlay = false,
-                showControls = true
+                showSubtitleDelayOverlay = false
             )
         }
     }
@@ -1334,6 +1333,7 @@ fun PlayerRuntimeController.onEvent(event: PlayerEvent) {
             pendingAddonSubtitleTrackId = null
             pendingAudioSelectionAfterSubtitleRefresh = null
             resetSubtitleAutoSyncState()
+            cancelAutomaticSubtitleSync() // AutoSync hook
             rememberInternalSubtitleSelection(event.index)
             selectSubtitleTrack(event.index)
             _uiState.update {
@@ -1357,6 +1357,7 @@ fun PlayerRuntimeController.onEvent(event: PlayerEvent) {
             pendingAddonSubtitleTrackId = null
             pendingAudioSelectionAfterSubtitleRefresh = null
             resetSubtitleAutoSyncState()
+            cancelAutomaticSubtitleSync() // AutoSync hook
             rememberSubtitleDisabled()
             disableSubtitles()
             _uiState.update {
@@ -1379,6 +1380,7 @@ fun PlayerRuntimeController.onEvent(event: PlayerEvent) {
             autoSubtitleSelected = true
             rememberAddonSubtitleSelection(event.subtitle)
             selectAddonSubtitle(event.subtitle)
+            runSelectedAutomaticSubtitleSync(event.subtitle) // AutoSync hook
             _uiState.update {
                 it.copy(
                     showSubtitleOverlay = true,
